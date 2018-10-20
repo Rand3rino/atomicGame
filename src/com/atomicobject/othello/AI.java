@@ -3,6 +3,7 @@ package com.atomicobject.othello;
 import java.util.Arrays;
 import java.util.Random;
 import java.util.ListIterator;
+import java.util.ArrayList;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
@@ -53,15 +54,18 @@ public class AI {
 			return 1;
 	}
 
-	int minimax(int node, int depth, int isMaximizingPlayer, int alpha, int beta) {
-	    
-		// TODO If node is leaf, return value of node.
+	int minimax(Node node, int depth, int isMaximizingPlayer, int alpha, int beta) {
+	
+		
+		ArrayList<Node> children = node.getChildren(node);
+	
+		
 		
 		
 	    if (isMaximizingPlayer == player) {
 	        int bestVal = -1000000; 
 	    
-	        for (node : node) {
+	        foreach (Node child in node) {
 	        	int value = minimax(node, depth+1, 2, alpha, beta);
 	            bestVal = max( bestVal, value); 
 	            alpha = max( alpha, bestVal);
@@ -73,7 +77,7 @@ public class AI {
 
 	    	int bestVal = +1000000;
 	
-	    	for (node : node) {
+	    	for (Node child : node) {
 	            int value = minimax(node, depth+1, 1, alpha, beta);
 	            bestVal = min(bestVal, value);
 	            beta = min( beta, bestVal);
