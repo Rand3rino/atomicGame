@@ -37,8 +37,8 @@ public class AI {
 //			for (int c = 1; c < 8; c++) {
 
 			if (check.isLegal(state.getBoard(), r, c)) {
-				move[0] = 7;
-				move[1] = 7;
+				move[0] = r;
+				move[1] = c;
 				System.out.println(" HIIIII" + r + " " + c);
 				return move;
 			}
