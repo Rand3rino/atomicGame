@@ -11,6 +11,7 @@ public class AI {
 
 	int player, opponent;
 	ListIterator<int[]> moveList;
+	
 
 	public AI(int[][] moves) {
 		moveList = Arrays.asList(moves).listIterator();
@@ -57,31 +58,30 @@ public class AI {
 		// TODO If node is leaf, return value of node.
 		
 		
-//	    if (isMaximizingPlayer == player) {
-//	        int bestVal = -1000000; 
-//	    
-//	        for (node : node) {
-//	        	int value = minimax(node, depth+1, 2, alpha, beta);
-//	            bestVal = max( bestVal, value); 
-//	            alpha = max( alpha, bestVal);
-//	            if (beta <= alpha) 
-//	                break;
-//	        return bestVal;}
-//	    }
-//	    else {
-//
-//	    	int bestVal = +1000000;
-//	
-//	    	for (node : node) {
-//	            int value = minimax(node, depth+1, 1, alpha, beta);
-//	            bestVal = min(bestVal, value);
-//	            beta = min( beta, bestVal);
-//	            if (beta <= alpha)
-//	                break;
-//	            return bestVal;
-//	    	}
-//	    }
-		return 0;
+	    if (isMaximizingPlayer == player) {
+	        int bestVal = -1000000; 
+	    
+	        for (node : node) {
+	        	int value = minimax(node, depth+1, 2, alpha, beta);
+	            bestVal = max( bestVal, value); 
+	            alpha = max( alpha, bestVal);
+	            if (beta <= alpha) 
+	                break;
+	        return bestVal;}
+	    }
+	    else {
+
+	    	int bestVal = +1000000;
+	
+	    	for (node : node) {
+	            int value = minimax(node, depth+1, 1, alpha, beta);
+	            bestVal = min(bestVal, value);
+	            beta = min( beta, bestVal);
+	            if (beta <= alpha)
+	                break;
+	            return bestVal;
+	    	}
+	    }
 	}
 
 	
