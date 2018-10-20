@@ -39,6 +39,7 @@ public class AI {
 			if (check.isLegal(state.getBoard(), r, c)) {
 				move[0] = r;
 				move[1] = c;
+
 				return move;
 			}
 			System.out.println(r + " " + c);
