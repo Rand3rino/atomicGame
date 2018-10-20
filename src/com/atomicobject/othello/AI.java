@@ -23,7 +23,6 @@ public class AI {
 		player = state.getPlayer();
 		opponent = getOpponent();
 		
-		Gson gson = new Gson();
 
 		int[] move = new int[2];
 		Random rand = new Random();
@@ -38,8 +37,9 @@ public class AI {
 //			for (int c = 1; c < 8; c++) {
 
 			if (check.isLegal(state.getBoard(), r, c)) {
-				move[0] = r;
-				move[1] = c;
+				move[0] = 7;
+				move[1] = 7;
+				System.out.println(" HIIIII" + r + " " + c);
 				return move;
 			}
 			System.out.println(r + " " + c);
@@ -59,9 +59,6 @@ public class AI {
 		
 		ArrayList<Node> children = node.getChildren(node);
 	
-		
-		
-		
 	    if (isMaximizingPlayer == player) {
 	        int bestVal = -1000000; 
 	    
