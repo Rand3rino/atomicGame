@@ -56,15 +56,16 @@ public class LegalMoves {
 
 	// check to make sure that the move flips an opponent's piece
 	public boolean flipsPiece(int[][] move, int moveR, int moveC) {
+		System.out.println("hi");
 		for (int r = -1; r < 2; r++)
 			for (int c = -1; c < 2; c++)
 				if (onBoard(moveR + r, moveC + c))
 					if (move[r + moveR][c + moveC] == opponent) {
-						
+						System.out.println("Opponent at " + (moveR+r) + " " + (moveC + c));
 						int mult = 2;
 						while (onBoard(moveR + mult*r, moveC + mult*c)) { 
 							if (move[moveR + mult * r][moveC + mult * c] == player) {
-								System.out.println(moveR + " " + moveC + " " + mult*r + " " + mult*c);
+								System.out.println("Player at " + (moveR+r*mult) + " " + (moveC + mult*c));							System.out.println(moveR + " " + moveC + " " + mult*r + " " + mult*c);
 								return true;
 							}
 							mult++;
