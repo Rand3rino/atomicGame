@@ -3,10 +3,11 @@ package com.atomicobject.othello;
 public class LegalMoves {
 	int player;
 	int opponent;
-	//GameState gameState = new GameState();
+
+	// GameState gameState = new GameState();
 	public LegalMoves(GameState game) {
-	player = game.getPlayer();
-	opponent = getOpponent();
+		player = game.getPlayer();
+		opponent = getOpponent();
 	}
 
 	/**
@@ -31,9 +32,9 @@ public class LegalMoves {
 			return false;
 
 		// check if it captures a piece
-		else if(!flipsPiece(move, moveR, moveC))
+		else if (!flipsPiece(move, moveR, moveC))
 			return false;
-		
+
 		return true;
 	}
 
@@ -46,7 +47,7 @@ public class LegalMoves {
 
 	// check if there is already a piece on that spot of the board
 	public boolean isEmpty(int[][] move, int moveR, int moveC) {
-		if (onBoard(moveR, moveC) ) {
+		if (onBoard(moveR, moveC)) {
 			if (move[moveR][moveC] != 0)
 				return false;
 			return true;
@@ -57,19 +58,23 @@ public class LegalMoves {
 	// check to make sure that the move flips an opponent's piece
 	public boolean flipsPiece(int[][] move, int moveR, int moveC) {
 		for (int r = -1; r < 2; r++)
-			for (int c = -1; c < 2; c++)
+			for (int c = -1; c < 2; c++) {
+				int mult = 1;
 				if (onBoard(moveR + r, moveC + c))
-					if (move[r + moveR][c + moveC] == opponent) {
-						int mult = 2;
-						while (onBoard(moveR + mult*r, moveC + mult*c)) { 
-							if (move[moveR + mult * r][moveC + mult * c] == player) {
-								return true;
-							}
+					if (move[moveR + r * mult][moveC + c * mult] == opponent)
+						while (true) {
 							mult++;
+							if (onBoard(moveR + r * mult, moveC + c * mult)) {
+								if (move[moveR + r * mult][moveC + c * mult] == player) {
+									System.out.println("Player @ " + (moveR + r * mult) + (moveC + c + mult));
+									return true;
+								}
+							} else
+								break;
+
 						}
-					}
+
+			}
 		return false;
-
 	}
-
 }
