@@ -60,11 +60,9 @@ public class LegalMoves {
 			for (int c = -1; c < 2; c++)
 				if (onBoard(moveR + r, moveC + c))
 					if (move[r + moveR][c + moveC] == opponent) {
-						
 						int mult = 2;
 						while (onBoard(moveR + mult*r, moveC + mult*c)) { 
 							if (move[moveR + mult * r][moveC + mult * c] == player) {
-								System.out.println(moveR + " " + moveC + " " + mult*r + " " + mult*c);
 								return true;
 							}
 							mult++;
