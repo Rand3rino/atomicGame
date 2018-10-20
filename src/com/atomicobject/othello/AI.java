@@ -56,32 +56,37 @@ public class AI {
 
 	int minimax(Node node, int depth, int isMaximizingPlayer, int alpha, int beta) {
 	
+		// If leaf, return value
+		if (node.noChildren(node)) {
+			return node.value;
+		}
 		
 		ArrayList<Node> children = node.getChildren(node);
 	
 	    if (isMaximizingPlayer == player) {
 	        int bestVal = -1000000; 
 	    
-	        foreach (Node child in node) {
+	        for (Node child : children) {
 	        	int value = minimax(node, depth+1, 2, alpha, beta);
 	            bestVal = max( bestVal, value); 
 	            alpha = max( alpha, bestVal);
 	            if (beta <= alpha) 
 	                break;
-	        return bestVal;}
+	        }
+	        return bestVal;
 	    }
 	    else {
 
 	    	int bestVal = +1000000;
 	
-	    	for (Node child : node) {
+	    	for (Node child :children) {
 	            int value = minimax(node, depth+1, 1, alpha, beta);
 	            bestVal = min(bestVal, value);
 	            beta = min( beta, bestVal);
 	            if (beta <= alpha)
 	                break;
-	            return bestVal;
 	    	}
+	    	return bestVal;
 	    }
 	}
 
