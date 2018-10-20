@@ -1,6 +1,6 @@
 package com.atomicobject.othello;
 
-import java.util.ArrayList;
+import java.util.Stack;
 
 public class Tree {
 	Node root;
@@ -51,8 +51,8 @@ class Node {
 			return true;
 		return false;
 	}
-	ArrayList<Node> getChildren(Node node) {
-		ArrayList<Node> nodeList = new ArrayList<Node>();
+	Stack<Node> getChildren(Node node) {
+		Stack<Node> nodeList = new Stack<Node>();
 		nodeList.add(node.first);
 		nodeList.add(node.second);
 		nodeList.add(node.third);
@@ -64,9 +64,6 @@ class Node {
 		nodeList.add(node.ninth);
 		nodeList.add(node.tenth);
 		return nodeList;
-		
-		
-		
 	}
 	
 	
