@@ -60,7 +60,7 @@ public class AI {
 		
 		// If leaf, return value
 		if (node.noChildren(node)) {
-			return node.value;
+			return gameValue(game.getBoard()); 
 		}
 		
 		GameState game2 = game;
@@ -99,6 +99,8 @@ public class AI {
 		int value = 0;
 		for (int r = 0; r < 8; r++)
 			for (int c = 0; c < 8; c++)
+				
+				// Corners
 				if (board[r][c] == player && ((r==0 && c==0) || (r==7 && c==0) ||
 				   (r==0 && c==7) || (r==7 && c==7)))
 						value += 10;
@@ -107,12 +109,22 @@ public class AI {
 						(r==0 && c==7) || (r==7 && c==7)))
 						value -= 10;
 				
+				// Edges
 				else if (board[r][c] == player && (c==0 || r==0 || r ==7 || c==7))
-						value += 2;
+						value += 4;
 				
 				else if (board[r][c] == opponent && (c==0 || r==0 || r ==7 || c==7))
+						value -= 4;
+				
+				// Center 2x2
+				else if (board[r][c] == player && ((r==3 && c==3) || (r==3 && c==4) ||
+						(r==4 && c==3) || (r==4 && c==4)))
+						value += 2;
+				else if (board[r][c] == opponent && ((r==3 && c==3) || (r==3 && c==4) ||
+						(r==4 && c==3) || (r==4 && c==4)))
 						value -= 2;
 				
+				// All others
 				else {
 					if (board[r][c] == player)
 						value++;
