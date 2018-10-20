@@ -37,9 +37,8 @@ public class AI {
 //			for (int c = 1; c < 8; c++) {
 
 			if (check.isLegal(state.getBoard(), r, c)) {
-				move[0] = 7;
-				move[1] = 7;
-				System.out.println(" HIIIII" + r + " " + c);
+				move[0] = r;
+				move[1] = c;
 				return move;
 			}
 			System.out.println(r + " " + c);
@@ -67,7 +66,7 @@ public class AI {
 	        int bestVal = -1000000; 
 	    
 	        for (Node child : children) {
-	        	int value = minimax(node, depth+1, 2, alpha, beta);
+	        	int value = minimax(child, depth+1, opponent, alpha, beta);
 	            bestVal = max( bestVal, value); 
 	            alpha = max( alpha, bestVal);
 	            if (beta <= alpha) 
@@ -80,7 +79,7 @@ public class AI {
 	    	int bestVal = +1000000;
 	
 	    	for (Node child :children) {
-	            int value = minimax(node, depth+1, 1, alpha, beta);
+	            int value = minimax(child, depth+1, player, alpha, beta);
 	            bestVal = min(bestVal, value);
 	            beta = min( beta, bestVal);
 	            if (beta <= alpha)
