@@ -1,9 +1,13 @@
 package com.atomicobject.othello;
 
 public class LegalMoves {
-	GameState gameState = new GameState();
-	int player = gameState.getPlayer();
-	int opponent = getOpponent();
+	int player;
+	int opponent;
+	//GameState gameState = new GameState();
+	public LegalMoves(GameState game) {
+	player = game.getPlayer();
+	opponent = getOpponent();
+	}
 
 	/**
 	 * @return the opponent
@@ -23,28 +27,31 @@ public class LegalMoves {
 			return false;
 
 		// check if space is empty
-		else if (isEmpty(move, moveR, moveC))
-			return true;
+		else if (!isEmpty(move, moveR, moveC))
+			return false;
 
 		// check if it captures a piece
-		else if(flipsPiece(move, moveR, moveC))
-			return true;
+		else if(!flipsPiece(move, moveR, moveC))
+			return false;
 		
-		return false;
+		return true;
 	}
 
 	// check if move coordinates are on the board
 	public boolean onBoard(int moveR, int moveC) {
-		if (moveR > 7 || moveC > 7)
+		if (moveR > 7 || moveC > 7 || moveR < 0 || moveC < 0)
 			return false;
 		return true;
 	}
 
 	// check if there is already a piece on that spot of the board
 	public boolean isEmpty(int[][] move, int moveR, int moveC) {
-		if (move[moveR][moveC] != 0)
-			return false;
-		return true;
+		if (onBoard(moveR, moveC) ) {
+			if (move[moveR][moveC] != 0)
+				return false;
+			return true;
+		}
+		return false;
 	}
 
 	// check to make sure that the move flips an opponent's piece
@@ -52,12 +59,17 @@ public class LegalMoves {
 		for (int r = -1; r < 2; r++)
 			for (int c = -1; c < 2; c++)
 				if (onBoard(moveR + r, moveC + c))
-					if (move[r + moveR][c + moveC] == opponent)
-						for(int mult = 2; mult < 100; mult++)
-							while (onBoard(moveR + mult*r, moveC + mult*c))
-								if (move[moveR + mult * r][moveC + mult * c] == player)
-									return true;
-
+					if (move[r + moveR][c + moveC] == opponent) {
+						
+						int mult = 2;
+						while (onBoard(moveR + mult*r, moveC + mult*c)) { 
+							if (move[moveR + mult * r][moveC + mult * c] == player) {
+								System.out.println(moveR + " " + moveC + " " + mult*r + " " + mult*c);
+								return true;
+							}
+							mult++;
+						}
+					}
 		return false;
 
 	}
