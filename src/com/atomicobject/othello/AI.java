@@ -3,6 +3,7 @@ package com.atomicobject.othello;
 import java.util.Arrays;
 import java.util.Random;
 import java.util.ListIterator;
+import java.util.ArrayList;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
@@ -22,7 +23,6 @@ public class AI {
 		player = state.getPlayer();
 		opponent = getOpponent();
 		
-		Gson gson = new Gson();
 
 		int[] move = new int[2];
 		Random rand = new Random();
@@ -37,8 +37,9 @@ public class AI {
 //			for (int c = 1; c < 8; c++) {
 
 			if (check.isLegal(state.getBoard(), r, c)) {
-				move[0] = r;
-				move[1] = c;
+				move[0] = 7;
+				move[1] = 7;
+				System.out.println(" HIIIII" + r + " " + c);
 				return move;
 			}
 			System.out.println(r + " " + c);
@@ -53,15 +54,15 @@ public class AI {
 			return 1;
 	}
 
-	int minimax(int node, int depth, int isMaximizingPlayer, int alpha, int beta) {
-	    
-		// TODO If node is leaf, return value of node.
+	int minimax(Node node, int depth, int isMaximizingPlayer, int alpha, int beta) {
+	
 		
-		
+		ArrayList<Node> children = node.getChildren(node);
+	
 	    if (isMaximizingPlayer == player) {
 	        int bestVal = -1000000; 
 	    
-	        for (node : node) {
+	        foreach (Node child in node) {
 	        	int value = minimax(node, depth+1, 2, alpha, beta);
 	            bestVal = max( bestVal, value); 
 	            alpha = max( alpha, bestVal);
@@ -73,7 +74,7 @@ public class AI {
 
 	    	int bestVal = +1000000;
 	
-	    	for (node : node) {
+	    	for (Node child : node) {
 	            int value = minimax(node, depth+1, 1, alpha, beta);
 	            bestVal = min(bestVal, value);
 	            beta = min( beta, bestVal);

@@ -1,5 +1,7 @@
 package com.atomicobject.othello;
 
+import java.util.ArrayList;
+
 public class Tree {
 	Node root;
 }
@@ -19,10 +21,9 @@ class Node {
 	Node ninth;
 	Node tenth;
 	
+	
 	Node() {
 		value = 0;
-		
-		// Expected to have ten branches
 		first   = null;
 		second  = null;
 		third   = null;
@@ -34,4 +35,39 @@ class Node {
 		ninth   = null;
 		tenth   = null;
 	}
+	
+	
+	boolean noChildren(Node node) {
+		if (first == null && 
+		second == null &&
+		third == null &&
+		fourth == null &&
+		fifth == null &&
+		sixth == null &&
+		seventh == null &&
+		eighth == null &&
+		ninth == null &&
+		tenth == null)
+			return true;
+		return false;
+	}
+	ArrayList<Node> getChildren(Node node) {
+		ArrayList<Node> nodeList = new ArrayList<Node>();
+		nodeList.add(node.first);
+		nodeList.add(node.second);
+		nodeList.add(node.third);
+		nodeList.add(node.fourth);
+		nodeList.add(node.fifth);
+		nodeList.add(node.sixth);
+		nodeList.add(node.seventh);
+		nodeList.add(node.eighth);
+		nodeList.add(node.ninth);
+		nodeList.add(node.tenth);
+		return nodeList;
+		
+		
+		
+	}
+	
+	
 }
